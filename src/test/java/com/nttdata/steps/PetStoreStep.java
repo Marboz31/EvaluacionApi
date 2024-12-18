@@ -17,9 +17,9 @@ public class PetStoreStep {
 
     public void creoOrden(String id, String idMascota, String cantidad) {
         String body ="{\n" +
-                "  \"id\":" + id +"\n" +
-                "  \"petId\":" + idMascota + "\n" +
-                "  \"quantity\":" + cantidad + "\n" +
+                "  \"id\":" + id +",\n" +
+                "  \"petId\":" + idMascota + ",\n" +
+                "  \"quantity\":" + cantidad + ",\n" +
                 "  \"shipDate\": \"2024-12-17T23:01:18.702Z\",\n" +
                 "  \"status\": \"placed\",\n" +
                 "  \"complete\": true\n" +

@@ -3,10 +3,10 @@
 
     Scenario Outline: Crear orden
       Given la url es <url>
-      When creo el orden del pedido mascota con ID <id> con PetID <idMascota> y quantity <cantidad>
+      When creo el orden del pedido mascota con ID <ID> con PetID <idMascota> y quantity <cantidad>
       Then valido el código de respuesta sea <statusCode>
       Examples:
-        | url                              | id  | idMascota | cantidad | statusCode |
+        | url                              | ID  | idMascota | cantidad | statusCode |
         | "https://petstore.swagger.io/v2" | "1" | "1"       | "1"      | 200        |
 
 
