@@ -15,34 +15,15 @@ public class PetStoreStep {
         URL_BASE = url;
     }
 
-    public void consultarMascota(String idMascota) {
-        response = RestAssured
-                .given()
-                .relaxedHTTPSValidation()
-                .baseUri(URL_BASE)
-                //.log().all()
-                .get("/pet/"+idMascota)
-                .then()
-                .log().all()
-                .extract().response();
-        ;
-
-    }
-
-    public void validacionRespuesta(int statusCode) {
-        Assert.assertEquals("validacion de respuesta", 200, response.statusCode());
-    }
-
-    public void validarNombreMascota(String nombreMascota) {
-    }
-
-    public void crearMascota(String nombre, String idMascota) {
-        String body = "{\n" +
-                "      \"id\":" + idMascota + ",\n" +
-                "      \"name\": \""+nombre+"\",\n" +
-                "      \"status\": \"available\"\n" +
+    public void creoOrden(String id, String idMascota, String cantidad) {
+        String body ="{\n" +
+                "  \"id\":" + id +"\n" +
+                "  \"petId\":" + idMascota + "\n" +
+                "  \"quantity\":" + cantidad + "\n" +
+                "  \"shipDate\": \"2024-12-17T23:01:18.702Z\",\n" +
+                "  \"status\": \"placed\",\n" +
+                "  \"complete\": true\n" +
                 "}";
-
 
         response = RestAssured
                 .given()
@@ -51,9 +32,29 @@ public class PetStoreStep {
                 .relaxedHTTPSValidation()
                 .body(body)
                 .log().all()
-                .post("/pet")
+                .post("/store/order")
                 .then()
                 .log().all()
                 .extract().response();
     }
+
+    public void validacionRespuesta(int statusCode) {
+        Assert.assertEquals("validacion de respuesta", 200, response.statusCode());
+    }
+
+
+    public void consultoOrden(String orderId) {
+        response = RestAssured
+                .given()
+                .relaxedHTTPSValidation()
+                .baseUri(URL_BASE)
+                .log().all()
+                .get("/store/order/"+orderId)
+                .then()
+                .log().all()
+                .extract().response();
+        ;
+    }
+
+
 }

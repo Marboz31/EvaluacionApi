@@ -1,17 +1,19 @@
+  @crear_consultar_orden
+  Feature: PetStore
 
-  Feature: PetStore API
+    Scenario Outline: Crear orden
+      Given la url es <url>
+      When creo el orden del pedido mascota con ID <id> con PetID <idMascota> y quantity <cantidad>
+      Then valido el código de respuesta sea <statusCode>
+      Examples:
+        | url                              | id  | idMascota | cantidad | statusCode |
+        | "https://petstore.swagger.io/v2" | "1" | "1"       | "1"      | 200        |
 
-    @consulta
-    Scenario: Consulta mascota
 
-      Given la url es "https://petstore.swagger.io/v2"
-      When consulto la mascota con ID "1"
-      Then valido el código de respuesta sea 200
-      And valido el nombre de la mascota sea "555"
-
-      @crear_mascota
-      Scenario: Crear mascota
-
-        Given la url es "https://petstore.swagger.io/v2"
-        When creo la mascota "Rocky" con ID "10"
-        Then valido el código de respuesta sea 200
+    Scenario Outline: Consultar orden
+      Given la url es <url>
+      When consulto la orden con OrderId <OrderId>
+      Then valido el código de respuesta sea <statusCode>
+      Examples:
+        | url                              | OrderId | statusCode |
+        | "https://petstore.swagger.io/v2" | "1"     | 200        |
